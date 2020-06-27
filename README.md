@@ -1,11 +1,12 @@
 # To-Do List application for task management using SpringBoot and Angular
 This is a RESTFul implementation of a task management app
 ### Technology Stack
- - Backend - SpringBoot
- - Database - 
+ - Backend - SpringBoot, Hibernate
+ - Database - MYSQL
  - Frontend - Angular, jsp
  - Server Build tools - Maven
  - Client Build tools - angular-cli, npm
+ - Server - Tomcat
 
 ### Prerequisites
 - Java 11
@@ -13,6 +14,7 @@ This is a RESTFul implementation of a task management app
 - Angular cli
 - Node.js
 - npm
+- Tomcat
 
 ### Application basic functionalities
 - User can add a todo item

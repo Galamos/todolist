@@ -6,13 +6,11 @@ import com.example.util.CustomErrorLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class ItemController {
 
     @Autowired
@@ -20,9 +18,6 @@ public class ItemController {
 
     @RequestMapping(value = "/item", method = RequestMethod.POST)
     public ResponseEntity<?> createItem(@RequestBody Item item){
-        if(itemService.isItemExist(item)){
-            return new ResponseEntity(new CustomErrorLogger("Cannot add item because item with id: " + item.getId() + " already exist"), HttpStatus.CONFLICT);
-        }
         itemService.saveOrUpdateItem(item);
         return new ResponseEntity<String>("Task has been saved!", HttpStatus.CREATED);
     }

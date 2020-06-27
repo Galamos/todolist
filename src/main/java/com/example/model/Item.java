@@ -1,22 +1,22 @@
 package com.example.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "Items")
-public class Item {
+public class Item implements Serializable {
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "ITEM_DESCRIPTION")
     private String description;
+    @Column(name = "STATUS")
     private Boolean status;
 
     public int getId(){

@@ -21,6 +21,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <jdk.version>1.8</jdk.version>
+        <hibernate.version>RELEASE</hibernate.version>
+        <apache.commons.DBCP.version>1.4</apache.commons.DBCP.version>
+        <mysql.version>6.0.6</mysql.version>
+        <jstl.version>1.2</jstl.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
     </properties>
 
     <dependencies>
@@ -50,6 +56,24 @@
             <version>0.7.2</version>
         </dependency>
 
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${apache.commons.DBCP.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -58,7 +82,13 @@
     </dependencies>
 
     <build>
+        <finalName>ToDoList</finalName>
         <plugins>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
