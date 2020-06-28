@@ -1,21 +1,16 @@
 package com.example.dao;
 
 import com.example.model.Item;
-import com.example.util.CustomErrorLogger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.UsesSunMisc;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static org.antlr.v4.codegen.DefaultOutputModelFactory.list;
 
 @Repository("itemDao")
 public class ItemDaoImpl implements ItemDao {
-
-    private CustomErrorLogger customErrorLogger;
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -46,7 +41,6 @@ public class ItemDaoImpl implements ItemDao {
         List<Item> items = session.createQuery("").list();
 
         for(Item item: items){
-            customErrorLogger = new CustomErrorLogger("Item list: " + item);
         }
         return items;
     }

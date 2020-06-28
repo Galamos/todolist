@@ -2,8 +2,8 @@ package com.example.controller;
 
 import com.example.model.Item;
 import com.example.service.ItemService;
-import com.example.util.CustomErrorLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +15,12 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired(required = true)
+    @Qualifier(value = "itemService")
+    public void setItemService(ItemService itemService) {
+        this.itemService = itemService;
+    }
 
     @RequestMapping(value = "/item", method = RequestMethod.POST)
     public ResponseEntity<?> createItem(@RequestBody Item item){
@@ -36,7 +42,7 @@ public class ItemController {
 
         Item currentItem = itemService.getItem(id);
         if (currentItem == null){
-            return new ResponseEntity(new CustomErrorLogger("Item with id: " + id + "was not found!"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         currentItem.setDescription(item.getDescription());
         currentItem.setStatus(item.getStatus());
@@ -48,7 +54,7 @@ public class ItemController {
     public ResponseEntity<?> deleteItem(@PathVariable("id") int id){
         Item item = itemService.getItem(id);
         if (item == null){
-            return new ResponseEntity(new CustomErrorLogger("Item with id: " + id + "not found!"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         itemService.deleteItem(id);
         return new ResponseEntity<Item>(HttpStatus.NO_CONTENT);
