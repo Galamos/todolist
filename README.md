@@ -1,4 +1,4 @@
-# To-Do List application for task management using SpringBoot and Angular
+# (Still in progress)To-Do List application for task management using SpringBoot and Angular.js
 This is a RESTFul implementation of a task management app
 ### Technology Stack
  - Backend - SpringBoot, Hibernate
